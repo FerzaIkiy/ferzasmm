@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FERZA SAPUTRA SMMNUSANTARA | Premium Dynamic Platform</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- RESET & BASE STYLE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: #030712;
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- AMBIENT GLOW EFFECTS --- */
+        .bg-glow-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 119, 255, 0.12) 0%, rgba(0,0,0,0) 70%);
+            top: -150px;
+            right: -100px;
+            z-index: -1;
+        }
+        .bg-glow-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(0,0,0,0) 70%);
+            top: 500px;
+            left: -200px;
+            z-index: -1;
+        }
+
+        /* --- STICKY NAVBAR ULTRA SLIM --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 6%;
+            background: rgba(3, 7, 18, 0.75);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        /* LOGO 3D PLANET EKSKLUSIF */
+        .logo-3d {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #0077ff, #00ffaa);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 119, 255, 0.5);
+            animation: spinPlanet 8s linear infinite;
+        }
+        .logo-3d::after {
+            content: '';
+            position: absolute;
+            width: 44px;
+            height: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.75);
+            border-top: none;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+
+        @keyframes spinPlanet {
+            0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
+            100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+        }
+
+        .logo-text {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: linear-gradient(45deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #00ffaa;
+        }
+
+        .btn-nav-login {
+            background: linear-gradient(135deg, rgba(0, 119, 255, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 8px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 119, 255, 0.3);
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .btn-nav-login:hover {
+            border-color: #00ffaa;
+            box-shadow: 0 0 12px rgba(0, 255, 170, 0.2);
+        }
+
+        /* --- DYNAMIC PAGES CONTROL --- */
+        .page {
+            display: none;
+            padding-top: 85px;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- LANDING HERO SECTION POLESAN PREMIUM --- */
+        .hero {
+            padding: 60px 6% 40px 6%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+        .badge i { color: #00ffaa; margin-right: 5px; }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            max-width: 700px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(45deg, #0077ff, #00ffaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+            max-width: 550px;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #0077ff, #0055cc);
+            color: white;
+            padding: 12px 26px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 119, 255, 0.25);
+            transition: 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            padding: 12px 26px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+        /* --- INTERACTIVE 3D COMPONENT IN FRONT --- */
+        .hero-image-space {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            height: 240px;
+            margin-top: 10px;
+        }
+
+        .container-3d {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: floating 5s ease-in-out infinite;
+        }
+
+        .payment-badge-3d {
+            position: absolute;
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .badge-qris { top: 15px; left: -15px; }
+        .badge-auto { bottom: 20px; right: -15px; }
+        .badge-qris i { color: #0077ff; }
+        .badge-auto i { color: #00ffaa; }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- VIDEO REFERENSI COUNTER COUNTER (DIROMBAK LUXURY) --- */
+        .stats-grid {
+            display: grid;
+            grid-template-cols: 1fr;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto 0 auto;
+            padding: 0 6%;
+        }
+
+        .stat-card {
+            background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 16px 22px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(5px);
+        }
+        .stat-info { text-align: left; }
+        .stat-info h3 { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+        .stat-info p { font-size: 12px; color: #64748b; margin-top: 2px; }
+        .stat-icon-box {
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #00ffaa; font-size: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- KEUNGGULAN BARU (POLES CLEAN & EXCLUSIVE) --- */
+        .section-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 6% 60px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section-title h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .section-title p { color: #4b5563; font-size: 13px; }
+
+        .features-clean-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .feature-clean-item {
+            background: #090d16;
+            border: 1px solid rgba(255,255,255,0.02);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .feature-clean-item i {
+            font-size: 18px; color: #0077ff;
+            background: rgba(0, 119, 255, 0.08);
+            padding: 12px; border-radius: 12px;
+        }
+        .feature-clean-item h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .feature-clean-item p { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+        /* --- TESTIMONI MINIMALIS SLIDER --- */
+        .testi-box {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+        }
+        .testi-box p { font-size: 13px; color: #94a3b8; line-height: 1.6; font-style: italic; }
+        .testi-user { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 16px; }
+        .testi-avatar { width: 30px; height: 30px; background: #1e293b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #00ffaa; }
+        .testi-info h5 { font-size: 13px; font-weight: 700; color: #fff; text-align: left; }
+        .testi-info span { font-size: 11px; color: #4b5563; display: block; text-align: left; }
+
+        /* --- LAYANAN & ORDER PAGE --- */
+        .services-grid {
+            display: grid;
+            grid-template-cols: 1fr;
+            gap: 16px;
+        }
+
+        .service-box {
+            background: #090d16;
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .service-header span { font-size: 18px; }
+        .service-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .sub-services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sub-item {
+            background: rgba(3, 7, 18, 0.5);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .sub-item:hover {
+            border-color: #00ffaa;
+            background: rgba(0, 255, 170, 0.03);
+        }
+        .sub-item span { font-size: 12px; color: #94a3b8; }
+        .sub-item .price { font-weight: 700; color: #00ffaa; }
+
+        /* --- FORM CARD DEPOSIT --- */
+        .form-card {
+            background: #090d16;
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 24px;
+            border-radius: 20px;
+            max-width: 450px;
+            margin: 30px auto 0 auto;
+        }
+        .form-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; text-align: center; margin-bottom: 16px; }
+
+        .input-block { margin-bottom: 14px; }
+        .input-block label { display: block; font-size: 11px; color: #64748b; margin-bottom: 5px; }
+        .input-block input, .input-block select {
+            width: 100%;
+            padding: 12px;
+            background: #030712;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+        }
+        .input-block input:focus, .input-block select:focus { border-color: #0077ff; }
+
+        .btn-submit-form {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #00ffaa, #00b377);
+            color: #030712;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* --- AUTH BOX WINDOW --- */
+        .auth-wrapper { display: flex; justify-content: center; align-items: center; padding: 40px 6%; }
+        .auth-box {
+            width: 100%; max-width: 380px;
+            background: #090d16;
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+        .auth-box h2 { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
+        .field-group { position: relative; margin-bottom: 14px; text-align: left; }
+        .field-group i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #4b5563; font-size: 13px; }
+        .field-group input { width: 100%; padding: 12px 12px 12px 38px; background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: #fff; font-size: 12px; }
+        .auth-footer-text { margin-top: 16px; font-size: 12px; color: #64748b; }
+        .auth-footer-text span { color: #00ffaa; cursor: pointer; }
+
+        /* --- FAQ AREA --- */
+        .faq-item { background: #090d16; border: 1px solid rgba(255,255,255,0.02); border-radius: 12px; margin-bottom: 10px; }
+        .faq-trigger { width: 100%; text-align: left; padding: 14px; background: none; border: none; color: #fff; font-size: 12px; font-weight: 600; display: flex; justify-content: space-between; }
+        .faq-content { display: none; padding: 0 14px 14px 14px; font-size: 12px; color: #64748b; line-height: 1.5; }
+
+        /* --- LUXURY LOGO PAYMENT BOTTOM GRID --- */
+        .payment-logo-circle-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 25px;
+        }
+        .pay-circle {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: #090d16;
+            border: 1px solid rgba(255,255,255,0.04);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 800; color: #94a3b8;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.01);
+        }
+
+        /* --- FLOATING WHATSAPP PREMIUM GLASSMORPHISM --- */
+        .whatsapp-floating {
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            z-index: 999999 !important;
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            text-decoration: none;
+            background: rgba(18, 140, 126, 0.4); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            border: 1px solid rgba(37, 211, 102, 0.4);
+            padding: 12px 20px; 
+            border-radius: 30px; 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s ease;
+            animation: pulseGlow 2s infinite;
+        }
+        .whatsapp-floating i { color: #25D366; font-size: 18px; }
+        .whatsapp-floating span { color: #fff; font-size: 12px; font-weight: 700; }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        footer { text-align: center; padding: 30px 20px; font-size: 11px; color: #374151; border-top: 1px solid rgba(255,255,255,0.02); margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- NAVBAR PREMIUM DENGAN LOGO 3D PLANET -->
+    <nav>
+        <div class="logo-area" onclick="switchPage('home')">
+            <div class="logo-3d"></div>
+            <div class="logo-text">FERZA SMMNUSANTARA</div>
+        </div>
+        <div class="nav-links">
+            <a onclick="switchPage('home')" id="nav-home" class="active">Home</a>
+            <a onclick="switchPage('layanan')" id="nav-layanan">Layanan</a>
+            <button class="btn-nav-login" onclick="switchPage('login')">Dashboard</button>
+        </div>
+    </nav>
+
+    <!-- ================= PAGE 1: DEPAN / HOME (POLESAN EKSKLUSIF) ================= -->
+    <div id="page-home" class="page active-page">
+        <header class="hero">
+            <div class="badge"><i class="fa-solid fa-crown"></i> Indonesia Premium Edge Server</div>
+            <h1>Optimasi Jangkauan Sosmed<br><span>Dalam Satu Sentuhan Akurat</span></h1>
+            <p>Gerbang integrasi SMM Panel otomatis dengan skalabilitas tinggi. Menyediakan jalur injeksi data yang aman untuk kebutuhan peningkatan akun personal maupun korporasi bisnis Anda.</p>
+            
+            <div class="cta-buttons">
+                <button onclick="switchPage('layanan')" class="btn-primary">Mulai Order</button>
+                <button onclick="switchPage('login')" class="btn-secondary">Masuk</button>
+            </div>
+
+            <!-- VISUALISASI UTAMA DEPAN -->
+            <div class="hero-image-space">
+                <div class="payment-badge-3d badge-qris"><i class="fa-solid fa-bolt"></i><span>AUTOMATED GATEWAY</span></div>
+                <div class="container-3d">
+                    <i class="fa-solid fa-bezier-curve" style="font-size: 45px; background: linear-gradient(45deg, #0077ff, #00ffaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <p style="color: #4b5563; font-size: 11px; margin-top: 10px; font-weight:600; letter-spacing:1px;">SECURE INTEGRATION LINK</p>
+                </div>
+                <div class="payment-badge-3d badge-auto"><i class="fa-solid fa-shield-halved"></i><span>AUTO ENCRYPTED</span></div>
+            </div>
+        </header>
+
+        <!-- LIVE DATA STATISTIK DARI CONTOH VIDEO REFERENSI (VERSI ELEGAN) -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-info"><h3>60.402+</h3><p>Pengguna Aktif</p></div>
+                <div class="stat-icon-box"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-info"><h3>6.555.245+</h3><p>Pesanan Dikerjakan</p></div>
+                <div class="stat-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-info"><h3>2.377+</h3><p>Layanan Tersedia</p></div>
+                <div class="stat-icon-box"><i class="fa-solid fa-layer-group"></i></div>
+            </div>
+        </section>
+
+        <!-- ================= SEKSI PAMER SERTIFIKAT KEAMANAN (ISS & CYBER SECURITY) ================= -->
+        <section class="section-container" style="padding-bottom: 20px;">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-shield-halved" style="color: #00ffaa; margin-right: 8px;"></i> Sertifikasi & Validasi Sistem</h2>
+                <p>Infrastruktur platform SMM dengan standarisasi keamanan digital berlapis</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+                <!-- KARTU ISS / SECURITY COMPLIANCE -->
+                <div style="background: linear-gradient(135deg, rgba(0, 119, 255, 0.05), rgba(16, 185, 129, 0.02)); border: 1px solid rgba(0, 119, 255, 0.2); padding: 24px; border-radius: 16px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 100px; color: rgba(0, 119, 255, 0.03); transform: rotate(-15deg); font-weight: 800; pointer-events: none;">ISS</div>
+                    
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 12px;">
+                        <div style="width: 45px; height: 45px; background: rgba(0, 119, 255, 0.1); border: 1px solid rgba(0, 119, 255, 0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0077ff; font-size: 20px;">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.5px;">ISS COMPLIANCE VERIFIED</h4>
+                            <span style="font-size: 11px; color: #00ffaa; font-weight: 750; background: rgba(0, 255, 170, 0.08); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(0, 255, 170, 0.2);">ACTIVE / SECURE</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                        Arsitektur jaringan internal platform telah divalidasi menggunakan standarisasi **ISS (Information Security System)**. Menjamin seluruh pertukaran data API, perlindungan database *user*, serta enkripsi *password* member berada dalam komparasi sistem keamanan tingkat tinggi yang kebal dari ancaman siber.
+                    </p>
+                </div>
+
+                <!-- KARTU SSL ENCRYPTION -->
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(0, 119, 255, 0.02)); border: 1px solid rgba(16, 185, 129, 0.2); padding: 24px; border-radius: 16px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 12px;">
+                        <div style="width: 45px; height: 45px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #00ffaa; font-size: 20px;">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.5px;">256-BIT SSL DATA ENCRYPTION</h4>
+                            <span style="font-size: 11px; color: #0077ff; font-weight: 750; background: rgba(0, 119, 255, 0.08); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(0, 119, 255, 0.2);">SSL VERIFIED</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                        Setiap transaksi pengiriman dana (Deposit Gateway) dan eksekusi order diproteksi oleh enkripsi SSL (Secure Sockets Layer) 256-bit. Jalur koneksi dijamin privat, mencegah terjadinya kebocoran data (*data sniffing*) pihak ketiga selama proses transaksi berlangsung.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKSI KEUNGGULAN UTAMA (LUXURY TEXT) -->
+        <section class="section-container">
+            <div class="section-title">
+                <h2>Kenapa Harus FERZA SMMNUSANTARA?</h2>
+                <p>Kualitas ekosistem digital terbaik yang dirancang khusus untuk kenyamanan Anda</p>
+            </div>
+            <div class="features-clean-list">
+                <div class="feature-clean-item">
+                    <i class="fa-solid fa-gem" style="color: #00ffaa; background: rgba(0,255,170,0.05);"></i>
+                    <div>
+                        <h4>Kualitas Layanan Premium</h4>
+                        <p>Seluruh alur server dipantau ketat secara berkala demi menjaga kestabilan kualitas pengisian data target akun media sosial Anda.</p>
+                    </div>
+                </div>
+                <div class="feature-clean-item">
+                    <i class="fa-solid fa-headset" style="color: #0077ff; background: rgba(0,119,255,0.05);"></i>
+                    <div>
+                        <h4>Pelayanan Bantuan Responsif</h4>
+                        <p>Tim support kami standby mendampingi kendala teknis operasional Anda melalui interaksi langsung via kanal WhatsApp center.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONI PREMIUM SLIDER ACCENT -->
+        <section class="section-container" style="padding-top: 0;">
+            <div class="section-title">
+                <h2>Apa Kata Mereka?</h2>
+            </div>
+            <div class="testi-box">
+                <p>"Sebagai seorang Spesialis Media Sosial saya sangat terbantu dengan layanan di SMMNUSANTARA. Saya dapat meningkatkan engagement dengan sangat efektif dan hemat waktu."</p>
+                <div class="testi-user">
+                    <div class="testi-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                    <div class="testi-info"><h5>Nadia</h5><span>Spesialis Media Sosial</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ BOX -->
+        <section class="section-container" style="padding-top: 0;">
+            <div class="section-title">
+                <h2>Pertanyaan Umum (FAQ)</h2>
+            </div>
+            <div class="faq-item">
+                <button class="faq-trigger" onclick="toggleFaqBox('faq1')"><span>Bagaimana cara kerja pengisian otomatis?</span><i class="fa-solid fa-chevron-down"></i></button>
+                <div id="faq1" class="faq-content">Sistem backend kami membaca callback data payment secara langsung dari API Gateway, lalu meneruskannya langsung ke antrean server utama untuk diproses detik itu juga.</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= PAGE 2: LAYANAN & SIMULASI ORDER ================= -->
+    <div id="page-layanan" class="page">
+        <section class="section-container">
+            <div class="section-title">
+                <h2>Pilihan Paket Layanan</h2>
+                <p>Klik item sub-layanan di bawah untuk memuat data pemesanan secara instan</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-box">
+                    <div class="service-header"><span>🎵</span><h3>TikTok Service</h3></div>
+                    <div class="sub-services-list">
+                        <div class="sub-item" onclick="autoFillForm('TikTok Followers [Speed]', 'Rp 14.500')"><span>Followers HQ Boost</span><span class="price">Rp 14.500</span></div>
+                        <div class="sub-item" onclick="autoFillForm('TikTok Likes [Instant]', 'Rp 7.800')"><span>Likes Target FYP</span><span class="price">Rp 7.800</span></div>
+                    </div>
+                </div>
+
+                <div class="service-box">
+                    <div class="service-header"><span>📸</span><h3>Instagram Network</h3></div>
+                    <div class="sub-services-list">
+                        <div class="sub-item" onclick="autoFillForm('Instagram Followers [Lifetime]', 'Rp 17.000')"><span>Followers Garansi</span><span class="price">Rp 17.000</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM TRANSAKSI -->
+            <div class="form-card">
+                <h3><i class="fa-solid fa-square-poll-horizontal" style="color:#00ffaa; margin-right:6px;"></i> Form Pengisian Data</h3>
+                <div class="input-block" style="margin-top:12px;">
+                    <label>Layanan Terpilih:</label>
+                    <input type="text" id="order-layanan-field" readonly value="Belum ada yang dipilih..." style="color:#00ffaa; font-weight:700;">
+                </div>
+                <div class="input-block">
+                    <label>Target Link Akun:</label>
+                    <input type="text" id="order-target-field" placeholder="Masukkan URL target">
+                </div>
+                <div class="input-block">
+                    <label>Metode Pembayaran:</label>
+                    <select id="deposit-method">
+                        <option value="QRIS">QRIS Auto Gateway (Rekomendasi)</option>
+                        <option value="BCA">BCA Virtual Account</option>
+                    </select>
+                </div>
+                <button class="btn-submit-form" onclick="executeSystemOrder()">Eksekusi Order ⚡</button>
+            </div>
+
+            <!-- GRID METODE PEMBAYARAN BULAT EKSKLUSIF DI BAWAH -->
+            <div class="section-title" style="margin-top: 50px; margin-bottom: 0;">
+                <p style="text-transform: uppercase; font-size:11px; letter-spacing:1px;">Metode Pembayaran Resmi</p>
+                <div class="payment-logo-circle-grid">
+                    <div class="pay-circle" style="color:#ff0077; border-color: rgba(255,0,119,0.2);">QRIS</div>
+                    <div class="pay-circle" style="color:#0077ff; border-color: rgba(0,119,255,0.2);">BCA</div>
+                    <div class="pay-circle" style="color:#f59e0b; border-color: rgba(245,158,11,0.2);">DANA</div>
+                    <div class="pay-circle" style="color:#00ffaa; border-color: rgba(0,255,170,0.2);">BNI</div>
+                    <div class="pay-circle" style="color:#ef4444; border-color: rgba(239,68,68,0.2);">BRI</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= PAGE 3: FORM LOGIN ================= -->
+    <div id="page-login" class="page">
+        <div class="auth-wrapper">
+            <div class="auth-box">
+                <h2>Masuk Dashboard</h2>
+                <div class="field-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="Username Anda">
+                </div>
+                <div class="field-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Password">
+                </div>
+                <button class="btn-submit-form" style="background:linear-gradient(45deg, #0077ff, #0055cc); color:#fff;" onclick="alert('Database terhubung aman!')">Otentikasi Akses</button>
+                <div class="auth-footer-text">Belum punya akun? <span onclick="switchPage('register')">Daftar Sekarang</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 4: FORM REGISTER ================= -->
+    <div id="page-register" class="page">
+        <div class="auth-wrapper">
+            <div class="auth-box">
+                <h2>Buat Akun Member</h2>
+                <div class="field-group"><i class="fa-solid fa-id-card"></i><input type="text" placeholder="Nama Lengkap"></div>
+                <div class="field-group"><i class="fa-solid fa-envelope"></i><input type="email" placeholder="Alamat Email"></div>
+                <div class="field-group"><i class="fa-solid fa-user"></i><input type="text" placeholder="Username Baru"></div>
+                <div class="field-group"><i class="fa-solid fa-lock"></i><input type="password" placeholder="Password Baru"></div>
+                <button class="btn-submit-form" onclick="alert('Registrasi terenkripsi berhasil!')">Kirim Data</button>
+                <div class="auth-footer-text">Sudah bergabung? <span onclick="switchPage('login')">Masuk Di Sini</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING WHATSAPP CHAT (PREMIUM FIXED LAYER) -->
+    <a href="https://wa.me/6282361256044?text=Halo%20Admin%20Ferza,%20saya%20butuh%20bantuan%20terkait%20layanan%20SMM" class="whatsapp-floating" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Kontak Kami</span>
+    </a>
+
+    <footer>
+        <p>© 2026 FERZA SAPUTRA SMMNUSANTARA. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <!-- LOGIKA INTERAKTIF JAVASCRIPT -->
+    <script>
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active-page'));
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-layanan').classList.remove('active');
+
+            document.getElementById('page-' + pageId).classList.add('active-page');
+            if(pageId === 'home') document.getElementById('nav-home').classList.add('active');
+            if(pageId === 'layanan') document.getElementById('nav-layanan').classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function autoFillForm(serviceName, servicePrice) {
+            document.getElementById('order-layanan-field').value = serviceName + " (" + servicePrice + ")";
+            document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('order-target-field').focus();
+        }
+
+        function executeSystemOrder() {
+            const layanan = document.getElementById('order-layanan-field').value;
+            const target = document.getElementById('order-target-field').value;
+            if(layanan === "Belum ada yang dipilih..." || target.trim() === "") {
+                alert("Mohon lengkapi pilihan paket layanan dan tautan link target pesanan Anda.");
+                return;
+            }
+            alert("Sistem mengonstruksi payload data...\nMenghubungkan gerbang transaksi.");
+        }
+
+        function toggleFaqBox(boxId) {
+            const el = document.getElementById(boxId);
+            el.style.display = (el.style.display === "block") ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
